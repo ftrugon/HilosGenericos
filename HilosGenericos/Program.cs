@@ -1,17 +1,18 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-Console.WriteLine("Hello, World!");
+//MyEvents.finalizar = () => { Console.WriteLine("Suscriptor A"); };
+//MyEvents.finalizar += () => { Console.WriteLine("Suscriptor B"); };
 
-// por hash de diccionario y por hasch a fuerza bruta
+using HilosGenericos;
 
+FinishEvent finishEvent = new FinishEvent();
 
-//Pass the file path and file name to the StreamReader constructor
-String filePath = "C:\\Users\\fran\\RiderProjects\\HilosGenericos\\HilosGenericos\\10k-most-common.txt";
-//Read the first line of text
+Wrapper<Action> finishEvent2 = new Wrapper<Action>(() => { });
 
-string[] lines = File.ReadAllLines(filePath);
-Random rng = new Random();
-int randomNumber = rng.Next(0, lines.Length);
-Console.WriteLine(lines[randomNumber]);
+MiHilo t1 = new MiHilo("x", finishEvent2);
+MiHilo t2 = new MiHilo("y", finishEvent2);
 
-Console.ReadLine();
+finishEvent.FinishAction += () => { Console.WriteLine("Suscriptor C"); };
+
+t1.Start();
+t2.Start();
