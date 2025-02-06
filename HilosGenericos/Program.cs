@@ -7,7 +7,7 @@ using HilosGenericos;
 
 FinishEvent finishEvent = new FinishEvent();
 
-Wrapper<Action> finishEvent2 = new Wrapper<Action>(() => { });
+Wrapper<Action> finishEvent2 = new Wrapper<Action>(() => { Console.WriteLine("hola"); });
 
 MiHilo t1 = new MiHilo("x", finishEvent2);
 MiHilo t2 = new MiHilo("y", finishEvent2);

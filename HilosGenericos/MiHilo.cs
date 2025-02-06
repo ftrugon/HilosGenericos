@@ -9,7 +9,7 @@ public class MiHilo
     public MiHilo(string text, Wrapper<Action> finishEvent)
     {
         this.text = text;
-        //Con global crea una copia !
+        //Con global crea una copia
         this.finishEvent = finishEvent;
         finishEvent.Value += () => { Console.WriteLine($"Hilo {text}"); };
         hilo = new Thread(_process);
@@ -22,6 +22,7 @@ public class MiHilo
 
     void _process()
     {
+        // esto deberia ser el action pero asi se va a quedar para la asincronia
         for (int i = 0; i < 1000; i++) Console.Write (text);
         finishEvent.Value.Invoke();
         Console.WriteLine($"Ha terminado: {text}");
